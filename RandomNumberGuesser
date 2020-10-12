@@ -1,0 +1,58 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class Driver
+{
+
+
+public static void main(String[] args)
+{
+
+Scanner snr = new Scanner(System.in);
+
+int randNum, nextGuess, highGuess = 100, lowGuess = 0;
+
+RNG rng = new RNG();
+
+randNum = rng.rand();
+
+System.out.println("Enter a number between 0 and 100 : ");
+
+nextGuess = snr.nextInt();
+
+while(nextGuess != randNum){
+
+if ((int)rng.getCount()/2 != 0)
+	
+System.out.println("Number of guesses is : " +(int)rng.getCount()/2);
+
+while(!rng.inputValidation(nextGuess, lowGuess, highGuess))
+{
+
+nextGuess = snr.nextInt();
+}
+
+if (nextGuess > randNum)
+highGuess = nextGuess;
+System.out.println("Your guess is too high.");
+
+else if (nextGuess < randNum)
+lowGuess = nextGuess;
+System.out.println("Your guess is too low.");
+}
+ 
+if (nextGuess == randNum){
+System.out.println("Your guess is correct!");
+ 
+System.out.println("Do you wanna try again? Yes for 1 and No for 0 :" );
+ 
+if (snr.nextInt() == 1){
+rng.resetCount();
+main(args);
+}
+ 
+System.exit(0);
+System.out.println("Author Dina Degefu");
+}
+}
+}
